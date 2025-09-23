@@ -10,5 +10,14 @@ import { RouterOutlet } from '@angular/router';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'mega-tron';
+  title = 'MegaTron';
+
+  public open: boolean = false;
+  public anoCorrente!: number;
+
+  ngOnInit() {
+    this.anoCorrente = new Date().getFullYear();
+  }
+
+
 }
