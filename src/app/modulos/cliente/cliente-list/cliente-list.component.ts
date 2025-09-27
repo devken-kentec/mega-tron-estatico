@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { SharedService } from '../../../shared/shared.service';
 
 @Component({
   selector: 'app-cliente-list',
@@ -8,5 +9,10 @@ import { Component } from '@angular/core';
   styleUrl: './cliente-list.component.css'
 })
 export class ClienteListComponent {
+
+
+  ngOnInit() {
+
+  }
 
 }

@@ -8,11 +8,13 @@ import { SharedService } from '../shared/shared.service';
 })
 export class ClienteService {
 
-  private readonly api = `${environment.api}/jkl-kentec-6a6b6c2d6b656e7465632d32303235/api/usados-novinhos/v1`;
+  private readonly api = `${environment.api}/rtmec-kentec-6a6b6c2d6b656e7465632d32303235/api/proprietario/v1`;
   private http = inject(HttpClient);
   private sharedService = inject(SharedService);
 
-  constructor() { }
+  constructor() {
+    console.log(this.sharedService.getTokenRequisicao());
+  }
 
 
 }
