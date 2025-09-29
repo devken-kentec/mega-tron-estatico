@@ -1,1 +1,145 @@
-<p>cliente-form works!</p>
+<div class="col-12 " style="margin-top: 50px;">
+  <nav>
+    <ol class="breadcrumb bg-white">
+      <li class="breadcrumb-item"><a routerLink="/">Início</a></li>
+      <li class="breadcrumb-item"><a routerLink="/clientes">Listagem</a></li>
+      <li class="breadcrumb-item active">Cliente</li>
+    </ol>
+  </nav>
+  <form class="needs-validation" novalidate [formGroup]="clienteForm">
+    <div class="card">
+      <div class="card-header bg-dark" style="color: white; font-size: 14pt; font-weight: bold;">
+        Inclusão e Gerenciamnento de Clientes
+      </div>
+      <div class="card-body">
+        <nav class="col-md-12">
+          <div class="nav nav-tabs" id="nav-tab" role="tablist">
+            <a class="nav-item nav-link" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Cadastro</a>
+          </div>
+        </nav>
+        <div>
+        </div>
+        <div class="tab-content" id="nav-tabContent">
+          <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+            <div class="form-row col-md-12 mt-3">
+              <div class="form-group col-md-2">
+                <label for="id">Identificador:</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="id"
+                  formControlName="id"
+                  readonly/>
+              </div>
+              <div class="form-group col-md-4">
+                <label for="nome">Nome:</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="nome"
+                  formControlName="nome"
+                  />
+              </div>
+              <div class="form-group col-md-4">
+                <label for="apelido">Apelido:</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="apelido"
+                  formControlName="apelido"
+                  />
+              </div>
+              <div class="form-group col-md-2">
+                <label for="dataNascimento">Data de Nascimemto:</label>
+                <input
+                  type="date"
+                  class="form-control"
+                  id="dataNascimento"
+                  formControlName="dataNascimento"
+                  />
+              </div>
+            </div>
+          </div>
+          <div class="form-row col-md-12">
+            <div class="form-group col-md-2">
+              <label for="cep">CEP:</label>
+              <input
+                type="text"
+                class="form-control"
+                id="cep"
+                formControlName="cep"
+                mask="00.000-000"
+                />
+            </div>
+            <div class="form-group col-md-5">
+              <label for="endereco">Endereço:</label>
+              <input
+                type="text"
+                class="form-control"
+                id="endereco"
+                formControlName="endereco"
+                />
+            </div>
+            <div class="form-group col-md-5">
+              <label for="complemento">Complemento:</label>
+              <input
+                type="text"
+                class="form-control"
+                id="complemento"
+                formControlName="complemento"
+                />
+            </div>
+          </div>
+          <div class="form-row col-md-12">
+            <div class="form-group col-md-3">
+              <label for="fone">Telefone:</label>
+              <input
+                type="text"
+                class="form-control"
+                id="fone"
+                formControlName="fone"
+                mask="(00) 0000-0000"
+                />
+            </div>
+            <div class="form-group col-md-3">
+              <label for="whatsapp">Whatsapp:</label>
+              <input
+                type="text"
+                class="form-control"
+                id="whatsapp"
+                formControlName="whatsapp"
+                mask="(00) 0 0000-0000"
+                />
+            </div>
+            <div class="form-group col-md-4">
+              <label for="email">Email:</label>
+              <input
+                type="email"
+                class="form-control"
+                id="email"
+                formControlName="email"
+                placeholder="xxxxxx@xxxx.com.br"
+                />
+            </div>
+            <div class="form-group col-md-2">
+              <label for="status">Status:</label>
+              <select id="status" class="form-control" formControlName="status">
+                <option value="">Selecione</option>
+                <option>Ativo</option>
+                <option>Inativo</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+  <div class="float-right mt-3">
+    <button  type="submit" data-toggle="modal" data-target="#ModalSalvar" class="btn btn-success" (click)="onSubmit()">
+      <i class="fas fa-save"></i> &nbsp;Salvar
+    </button>
+    <button routerLink="/humano" class="btn btn-info ">
+      <i class="fas fa-backward"></i>&nbsp;Voltar
+    </button>
+  </div>
+</div>

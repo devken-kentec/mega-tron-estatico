@@ -1,6 +1,7 @@
 import { inject, Injectable } from '@angular/core';
 import { environment } from '../../environments';
 import { HttpClient } from '@angular/common/http';
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable({
   providedIn: 'root'
@@ -9,6 +10,7 @@ export class SharedService {
 
   private readonly api = `${environment.api}/rtmec-kentec-6a6b6c2d6b656e7465632d32303235/api/shared/v1`;
   private http = inject(HttpClient);
+  private toastrService = inject(ToastrService);
 
   private tokenRequisicao: string = '';
 
@@ -123,6 +125,18 @@ export class SharedService {
 
   public setTokenRequisicao(token: string): void {
     this.tokenRequisicao = token;
+  }
+
+  saveShow(mensagem: string, titulo: string){
+    this.toastrService.success(mensagem, titulo);
+  }
+
+  removeShow(mensagem: string, titulo: string){
+    this.toastrService.error(mensagem, titulo)
+  }
+
+  warningShow(mensagem: string, titulo: string){
+    this.toastrService.warning(mensagem, titulo)
   }
 
 }

@@ -18,11 +18,16 @@ export class AppComponent {
 
   public open: boolean = false;
   public anoCorrente!: number;
+   public url_atual!: string;
 
   ngOnInit() {
     this.anoCorrente = new Date().getFullYear();
     this.pegarTokenRequisicao();
-    this.router.navigate(['/home']);
+    this.url_atual = window.location.href;
+    if((this.url_atual === 'http://localhost:4200/' || this.url_atual === 'http://localhost:4200/home') || (this.url_atual === 'https://wwww.rtmec.kentec.com.br/' || this.url_atual === 'https://wwww.rtmec.kentec.com.br/home')){
+      this.router.navigate(['/home']);
+      console.log(this.url_atual);
+    }
     //console.log(this.sharedService.getTokenRequisicao());
   }
 
@@ -33,6 +38,5 @@ export class AppComponent {
 
   public abrirMenu() {
     this.open = !this.open;
-
   }
 }
