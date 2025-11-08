@@ -1,7 +1,9 @@
 import { inject, Injectable } from '@angular/core';
 import { environment } from '../../environments';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { SharedService } from '../shared/shared.service';
+import { Observable } from 'rxjs';
+import { Cliente } from '../domain/cliente.domian';
 
 @Injectable({
   providedIn: 'root'
@@ -13,8 +15,42 @@ export class ClienteService {
   private sharedService = inject(SharedService);
 
   constructor() {
-    console.log(this.sharedService.getTokenRequisicao());
+    //console.log(this.sharedService.getTokenRequisicao());
   }
 
+  public findAll(): Observable<Cliente[]> {
+    const headers = new HttpHeaders({
+      'Token': this.sharedService.getTokenRequisicao()
+    });
+    return this.http.get<Cliente[]>(`${this.api}/listarClientes`, { headers });
+  }
 
+  public loadById(id: number): Observable<Cliente> {
+    const headers = new HttpHeaders({
+      'Token': this.sharedService.getTokenRequisicao()
+    });
+    return this.http.get<Cliente>(`${this.api}/buscarClientePorId/${id}`, { headers });
+  }
+
+  public save(cliente: Cliente): Observable<Cliente> {
+    if (cliente.id === 0 || cliente.id === null) {
+      return this.create(cliente);
+    } else {
+      return this.update(cliente);
+    }
+  }
+
+  private create(cliente: Cliente): Observable<Cliente>{
+    const headers = new HttpHeaders({
+      'Token': this.sharedService.getTokenRequisicao()
+    });
+    return this.http.post<Cliente>(`${this.api}`, cliente, { headers });
+  }
+
+  private update(cliente: Cliente): Observable<Cliente>{
+    const headers = new HttpHeaders({
+      'Token': this.sharedService.getTokenRequisicao()
+    });
+    return this.http.put<Cliente>(`${this.api}`, cliente, { headers });
+  }
 }

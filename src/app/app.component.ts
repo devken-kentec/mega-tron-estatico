@@ -21,6 +21,9 @@ export class AppComponent {
    public url_atual!: string;
 
   ngOnInit() {
+    setTimeout(()=>{
+      this.boasVindas();
+    }, 3000);
     this.anoCorrente = new Date().getFullYear();
     this.pegarTokenRequisicao();
     this.url_atual = window.location.href;
@@ -38,5 +41,14 @@ export class AppComponent {
 
   public abrirMenu() {
     this.open = !this.open;
+  }
+
+  public boasVindas(): void {
+    const utterance = new SpeechSynthesisUtterance(`Olá, seja bem-vindo a RT AUTO MECÂNICA!`);
+    const voices = window.speechSynthesis.getVoices();
+    utterance.voice = voices.find(voice => {voice.lang === 'pt-BR'}) || null;
+    utterance.pitch = 5; // Tom (1 é o padrão)
+    utterance.rate = 2;  // Velocidade (1 é o padrão)
+    window.speechSynthesis.speak(utterance);
   }
 }

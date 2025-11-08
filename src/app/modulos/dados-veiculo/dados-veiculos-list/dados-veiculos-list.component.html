@@ -8,12 +8,12 @@
   <div class="row mb-4">
     <div class="col-md">
       <h1 class="h5 border-left pl-2">
-        Listagem de Clientes
+        Listagem de Dados do Veículo
       </h1>
     </div>
     <div class="col-md">
       <button routerLink="new" class="btn btn-primary float-right">
-        <i class="fas fa-user-plus"></i> Cadastrar Novo Cliente
+        <i class="fas fa-user-plus"></i> Cadastrar Novo Veículo
       </button>
     </div>
   </div>
@@ -23,24 +23,24 @@
         <thead>
           <tr class="bg-dark text-light">
             <th>ID</th>
-            <th>Nome</th>
-            <th>Zap</th>
-            <th>Fone</th>
-            <th>Status</th>
+            <th>Veículo</th>
+            <th>Proprietário</th>
+            <th>Cor</th>
+            <th>Placa</th>
             <th>Ações</th>
           </tr>
         </thead>
         <tbody style="max-height: 50px;">
-          @for(cliente of clientes; track cliente.id; let i = $index){
+          @for(dados of dadosVeiculos; track dados.id; let i = $index){
           <tr>
-            <td>{{ cliente.id }}</td>
-            <td>{{ cliente.nome }}</td>
-            <td>{{ cliente.whatsapp | mask: '(00) 00000-0000' }}</td>
-            <td>{{ cliente.fone | mask: '(00) 00000-0000' }}</td>
-            <td>{{ cliente.status}}</td>
+            <td>{{ dados.id }}</td>
+            <td>{{ dados.veiculoDescricao }}</td>
+            <td>{{ dados.proprietarioDescricao  }}</td>
+            <td>{{ dados.cor }}</td>
+            <td>{{ dados.placa}}</td>
             <td>
-              <button (click)="editar(cliente.id)" class="btn btn-outline-info btn-sm"><i class="far fa-edit"></i></button>
-              <button (click)="recuperarDados(cliente)" class="btn btn-outline-danger btn-sm"><i class="fas fa-user-slash"></i></button>
+              <button (click)="editar(dados.id)" class="btn btn-outline-info btn-sm"><i class="far fa-edit"></i></button>
+              <button (click)="recuperarDados(dados)" class="btn btn-outline-danger btn-sm"><i class="fas fa-user-slash"></i></button>
             </td>
           </tr>
         }
@@ -54,7 +54,7 @@
       </div>
     </div>
   } @loading {
-    <p>Carregando a Lista de Clientes...</p>
+    <p>Carregando a Lista de Dados do Veículo...</p>
   }
 </div>
 
